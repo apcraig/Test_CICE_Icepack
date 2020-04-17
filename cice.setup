@@ -393,7 +393,7 @@ endif
 if ( ${tdir} != ${spval} ) then
   set tsdir = ${tdir}
 endif
-if (-e $tsfile) then
+if (-e ${tsfile}) then
   echo "${0}: ERROR in tsfile, this should never happen"
   exit -1
 endif
@@ -504,6 +504,7 @@ EOF0
 cat >! ${tsdir}/report_codecov.csh << EOF0
 #!/bin/csh -f
 
+#setenv CODECOV_TOKEN "1d09241f-ed9e-47d8-847c-038bab024b53"   # consortium cice
 #setenv CODECOV_TOKEN "f3236008-0b92-4707-9ad5-ad906f5d2ba7"   # apcraig cice
 setenv CODECOV_TOKEN "0dcc6066-fdce-47b6-b84a-c55e2a0af4c0"   # apcraig test_cice_icepack
 set report_name = "${shhash}:${branch}:${machine} ${testsuite}"

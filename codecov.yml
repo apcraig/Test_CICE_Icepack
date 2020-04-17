@@ -1,4 +1,3 @@
-
 coverage:
   range: "20...100"
   round: down
