@@ -41,6 +41,7 @@ to support the CICE model.
    " ", "pio", "parallel netCDF"
    " ", "none", "netCDF library is not available"
    "ICE_CLEANBUILD", "true, false", "automatically clean before building", "true"
+   "ICE_CPPDEFS", "user defined preprocessor macros for build", "null"
    "ICE_QUIETMODE", "true, false", "reduce build output to the screen", "false"
    "ICE_GRID", "string (see below)", "grid", "set by cice.setup"
    " ", "gx3", "3-deg displace-pole (Greenland) global grid", " "
@@ -68,7 +69,7 @@ to support the CICE model.
    "ICE_QUEUE", "string", "batch queue name", "set by cice.setup or by default"
    "ICE_THREADED", "true, false", "force threading in compile, will always compile threaded if ICE_NTHRDS :math:`> 1`", "false"
    "ICE_BLDDEBUG", "true, false", "turn on compile debug flags", "false"
-
+   "ICE_CODECOV", "true,false", "turn on code coverage flags", "false"
 
 
 .. _tabnamelist:
@@ -123,6 +124,7 @@ Table of namelist options
    "\*","``diag_type``", "``stdout``", "write diagnostic output to stdout", ""
    "","", "``file``", "write diagnostic output to file", ""
    "","``diag_file``", "filename", "diagnostic output file (script may reset)", ""
+   "","``conserv_check``", "true/false", "check conservation", "``.false.``"
    "","``print_global``", "true/false", "print diagnostic data, global sums", "``.false.``"
    "","``print_points``", "true/false", "print diagnostic data for two grid points", "``.false.``"
    "","``latpnt``", "real", "latitude of (2) diagnostic points", "" 

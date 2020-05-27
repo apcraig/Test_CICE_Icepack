@@ -1,10 +1,10 @@
 #==============================================================================
-# Macros file for NAVYDSRC koehr, intel compiler
+# Macros file for NAVYDSRC koehr, gnu compiler
 #==============================================================================
 
 CPP        := ftn -E
 CPPDEFS    := -DFORTRANUNDERSCORE ${ICE_CPPDEFS}
-CFLAGS     := -c -O2
+CFLAGS     := -c
 
 FIXEDFLAGS := -ffixed-line-length-132
 FREEFLAGS  := -ffree-form
@@ -12,9 +12,21 @@ FFLAGS     := -fconvert=big-endian -fbacktrace -ffree-line-length-none
 FFLAGS_NOOPT:= -O0
 
 ifeq ($(ICE_BLDDEBUG), true)
-  FFLAGS     += -O0 -g -fcheck=bounds -finit-real=nan -fimplicit-none -ffpe-trap=invalid,zero,overflow
-else
-  FFLAGS     += -O2
+   FFLAGS  += -O0 -g -fcheck=bounds -finit-real=nan -fimplicit-none -ffpe-trap=invalid,zero,overflow
+   CFLAGS  += -O0
+endif
+
+ifeq ($(ICE_CODECOV), true) 
+   FFLAGS  += -O0 -g -fprofile-arcs -ftest-coverage
+   CFLAGS  += -O0 -g -coverage
+   LDFLAGS += -g -ftest-coverage -fprofile-arcs
+endif
+
+ifneq ($(ICE_BLDDEBUG), true) 
+ifneq ($(ICE_CODECOV), true) 
+   FFLAGS  += -O2
+   CFLAGS  += -O2
+endif
 endif
 
 SCC := gcc
@@ -43,12 +55,5 @@ ifeq ($(ICE_THREADED), true)
    LDFLAGS += -fopenmp
    CFLAGS += -fopenmp
    FFLAGS += -fopenmp
-endif
-
-### if using parallel I/O, load all 3 libraries.  PIO must be first!
-ifeq ($(ICE_IOTYPE), pio)
-   PIO_PATH:=/glade/u/home/jedwards/pio1_6_5/pio
-   INCLDIR += -I$(PIO_PATH)
-   SLIBS   := $(SLIBS) -L$(PIO_PATH) -lpio
 endif
 

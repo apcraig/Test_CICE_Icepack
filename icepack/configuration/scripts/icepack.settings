@@ -16,6 +16,7 @@ setenv ICE_RSTPFILE   undefined
 setenv ICE_DRVOPT     icepack
 setenv ICE_IOTYPE     none    # set to none if netcdf library is unavailable
 setenv ICE_CLEANBUILD true
+setenv ICE_CPPDEFS    ""
 setenv ICE_QUIETMODE  false
 setenv ICE_GRID       col
 setenv ICE_NXGLOB     4
@@ -77,5 +78,6 @@ setenv TRFED     0         # number of dissolved iron tracers
 
 ### Specialty code
 setenv ICE_BLDDEBUG  false  # build debug flags
+setenv ICE_CODECOV  false   # code coverage flag
 
 
